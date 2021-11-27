@@ -1,8 +1,31 @@
 .button {
-  padding: 7px 17px 6px;
+  padding: 5px 1rem 5px 1rem;
   border-radius: 4px;
-  border: solid 1px #b8b8b8;
   outline: 0;
   width: auto;
   height: auto;
+  line-height: 0;
+  cursor: pointer;
+  border: solid 1px;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.button__primary {
+  border-color: var(--color-blue);
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.button__delete {
+  border-color: var(--color-medium-gray);
+  background: transparent;
+  color: var(--color-medium-gray);
+}
+
+.button__delete:enabled, .button__delete--active {
+  border-color: var(--color-red);
+  color: var(--color-red);
 }

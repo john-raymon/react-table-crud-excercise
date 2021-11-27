@@ -9,8 +9,10 @@ export default function Home() {
           Users
         </h1>
 
-        <button className="button">
-          delete
+        <button className="button button__delete">
+          <p className="text-style__base">
+            Delete
+          </p>
         </button>
       </header>
     </div>
