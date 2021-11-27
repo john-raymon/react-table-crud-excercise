@@ -21,10 +21,6 @@
   letter-spacing: 0.00875rem;
 }
 
-.text-style__base--regular {
-  font-weight: 400;
-}
-
 .text-style__base--medium {
   font-weight: 500;
 }

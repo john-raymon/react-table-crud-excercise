@@ -1,20 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
+import Header from '../components/Header';
+import Button from '../components/Button';
+import DataTable from '../components/DataTable';
 
-
-export default function Home() {
+export default function Home({ users = []}) {
   return (
     <div className="home-component">
-      <header className="header-component">
-        <h1 className="text-style__title text-style--black">
-          Users
-        </h1>
-
-        <button className="button button__delete">
-          <p className="text-style__base">
-            Delete
-          </p>
-        </button>
-      </header>
+      <Header 
+        rightElement={
+          <Button buttonType="delete" disabled={true}>Delete</Button>
+        } 
+        title="Users" 
+      />
+      <DataTable labelNames={["email", "name", "role"]} dataList={users} />
     </div>
   )
 }

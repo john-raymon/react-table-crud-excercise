@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from 'react-router-dom';
 import Home from './views/Home';
 
@@ -47,7 +46,7 @@ const App = () => {
   return (
     <div className="container">
       <Routes>
-        <Route path="/" element={<Home usersData={data} />} />
+        <Route path="/" element={<Home users={data && data.allUsers} />} />
       </Routes>
     </div>
   )
