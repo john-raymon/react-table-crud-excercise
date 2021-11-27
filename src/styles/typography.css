@@ -1,0 +1,30 @@
+.text-style--black {
+  color: var(--color-black);
+}
+
+.text-style--gray {
+  color: var(--color-gray);
+}
+
+.text-style--white {
+  color: var(--color-white);
+}
+
+.text-style__title {
+  font-weight: 700;
+  font-size: 2.125rem;
+  letter-spacing: 0.023125rem;
+}
+
+.text-style__base {
+  font-size: 0.8125rem;
+  letter-spacing: 0.00875rem;
+}
+
+.text-style__base--regular {
+  font-weight: 400;
+}
+
+.text-style__base--medium {
+  font-weight: 500;
+}

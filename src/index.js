@@ -3,9 +3,10 @@ import ApolloClient, { gql } from 'apollo-boost';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import env from './env';
+import './styles/index.css';
 import { 
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link
 } from 'react-router-dom';
@@ -44,19 +45,19 @@ const App = () => {
   }
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <Home usersData={data} />
-        </Route>
-      </Switch>
-    </Router>
+    <div className="container">
+      <Routes>
+        <Route path="/" element={<Home usersData={data} />} />
+      </Routes>
+    </div>
   )
 }
 
 const Root = () => (
   <ApolloProvider client={client}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>
 );
 
