@@ -1,0 +1,29 @@
+enum Role {
+  ADMIN
+  DEVELOPER
+  APP_MANAGER
+  MARKETING
+  SALES
+}
+
+type User {
+  email: ID!
+  name: String!
+  role: Role!
+}
+
+type Query {
+  allUsers: [User!]!
+  user(email: ID!): User!
+}
+
+input UserAttributesInput {
+  name: String!
+  role: Role!
+}
+
+type Mutation {
+  updateUser(email: ID!, newAttributes: UserAttributesInput!): User!
+  deleteUsers(emails: [ID]!): [ID!]!
+  resetUsers: Boolean!
+}
