@@ -18,3 +18,5 @@ ul {
 @import './components/header-component.css';
 @import './components/home-component.css';
 @import './components/button-component.css';
+@import './components/user-detail-view.css';
+@import './components/data-table-component.css';

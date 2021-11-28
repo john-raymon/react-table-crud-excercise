@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ROLES_ENUM } from '../enums';
 
 export default function DataTable({ labelNames = [], dataList = [] }) {
+  const navigate = useNavigate();
   return (
     <div className="data-table">
       <div className="data-table__header">
@@ -18,23 +21,23 @@ export default function DataTable({ labelNames = [], dataList = [] }) {
       </div>
       <ul className="data-table__rows text-style__base text-style--gray">
         {
-          dataList.map(({ email = "", name = "", role = ""}) => {
+          dataList.map(({ email = "", name = "", role = ""}, i) => {
             return (
-              <li>
-                <ul>
-                  <li>
-                    <input type="checkbox" />
-                  </li>
-                  <li>
-                    { email }
-                  </li>
-                  <li>
-                    { name }
-                  </li>
-                  <li>
-                    { role }
-                  </li>
-                </ul>
+              <li key={i} onClick={() => navigate(`user/${email}`)} tabIndex="0">
+                  <ul>
+                    <li>
+                      <input type="checkbox" onClick={(e) => e.stopPropagation()} />
+                    </li>
+                    <li>
+                      { email }
+                    </li>
+                    <li>
+                      { name }
+                    </li>
+                    <li>
+                      { ROLES_ENUM[role] }
+                    </li>
+                  </ul>
               </li>
             )
           })

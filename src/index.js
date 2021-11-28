@@ -1,6 +1,6 @@
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import ApolloClient, { gql } from 'apollo-boost';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import env from './env';
 import './styles/index.css';
@@ -8,8 +8,11 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useParams,
+  Navigate,
 } from 'react-router-dom';
 import Home from './views/Home';
+import UserDetail from './views/UserDetail';
 
 const client = new ApolloClient({
   uri: env.GRAPHQL_ENDPOINT,
@@ -32,8 +35,36 @@ const ALL_USERS_QUERY = gql`
   }
 `;
 
+function WrappedUserDetail({ usersById, ...props}) {
+  const { userEmail } = useParams();
+  const [loading, setLoading] = useState(true);
+
+  if (usersById === null) {
+    return <p>Loading...</p>;
+  }
+
+  if (usersById[userEmail] === undefined) {
+    return <Navigate replace to="/" />;
+  }
+
+  return (
+    <UserDetail userEmail={userEmail} user={usersById[userEmail]} {...props} />
+  ) 
+}
+
 const App = () => {
   const { loading, error, data } = useQuery(ALL_USERS_QUERY);
+  const [usersById, setUsersById] = useState(null);
+  
+  useEffect(() => {
+    const users = data ? data.allUsers : null;
+    if (users !== null) {
+      setUsersById(users.reduce((acc, user) => {
+        acc[user.email] = user;
+        return acc;
+      }, {}));
+    }
+  }, [data]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -47,10 +78,14 @@ const App = () => {
     <div className="container">
       <Routes>
         <Route path="/" element={<Home users={data && data.allUsers} />} />
+        <Route path="/user/:userEmail" element={<WrappedUserDetail usersById={usersById} />} />
+        {/* redirect to home if no match */}
+        <Route path="/*" element={<Navigate replace to="/" />} />
       </Routes>
     </div>
   )
 }
+
 
 const Root = () => (
   <ApolloProvider client={client}>

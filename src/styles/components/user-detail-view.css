@@ -1,0 +1,42 @@
+.user-detail {
+  width: 100%;
+}
+
+.user-detail__inputs-container {
+  display: flex;
+  items-align: stretch;
+  height: 250px;
+  margin-top: 1.5rem;
+}
+
+.user-detail__inputs-container > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.user-detail__inputs-container > div > * + * {
+  margin-top: 0.5rem;
+}
+
+.user-detail__inputs-container > div:first-child {
+  border-right: 0.0625rem solid var(--color-light-gray);
+  margin-right: 1rem;
+}
+
+.user-detail__radio-group input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+}
+
+.user-detail__radio-group > div {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+  text-transform: capitalize;
+}
+
+.user-detail__radio-group > div > * {
+  margin-right: 0.5rem;
+}

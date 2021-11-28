@@ -3,4 +3,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 0.0625rem solid var(--color-light-gray);
+  padding-bottom: 0.875rem;
+}
+
+.header-component h1 {
+  margin: 0px;
 }
