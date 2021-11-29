@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
   Navigate,
 } from 'react-router-dom';
 import Home from './views/Home';
@@ -35,27 +34,10 @@ const ALL_USERS_QUERY = gql`
   }
 `;
 
-function WrappedUserDetail({ usersById, ...props}) {
-  const { userEmail } = useParams();
-  const [loading, setLoading] = useState(true);
-
-  if (usersById === null) {
-    return <p>Loading...</p>;
-  }
-
-  if (usersById[userEmail] === undefined) {
-    return <Navigate replace to="/" />;
-  }
-
-  return (
-    <UserDetail userEmail={userEmail} user={usersById[userEmail]} {...props} />
-  ) 
-}
-
 const App = () => {
-  const { loading, error, data } = useQuery(ALL_USERS_QUERY);
+  const { loading, error, data, refetch } = useQuery(ALL_USERS_QUERY);
   const [usersById, setUsersById] = useState(null);
-  
+
   useEffect(() => {
     const users = data ? data.allUsers : null;
     if (users !== null) {
@@ -77,8 +59,8 @@ const App = () => {
   return (
     <div className="container">
       <Routes>
-        <Route path="/" element={<Home users={data && data.allUsers} />} />
-        <Route path="/user/:userEmail" element={<WrappedUserDetail usersById={usersById} />} />
+        <Route path="/" element={<Home users={data && data.allUsers} refetchAllUsersQuery={refetch} />} />
+        <Route path="/user/:userEmail" element={<UserDetail usersById={usersById} refetchAllUsersQuery={refetch} />} />
         {/* redirect to home if no match */}
         <Route path="/*" element={<Navigate replace to="/" />} />
       </Routes>

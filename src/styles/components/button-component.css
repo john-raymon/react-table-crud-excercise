@@ -20,6 +20,10 @@
   color: var(--color-white);
 }
 
+.button__primary:disabled {
+  opacity: 0.5;
+}
+
 .button__delete {
   border-color: var(--color-medium-gray);
   background: transparent;
