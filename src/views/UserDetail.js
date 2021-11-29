@@ -29,7 +29,7 @@ function UserDetail({userEmail, user, refetchAllUsersQuery}) {
     if (!loading && !error && (data && data.updateUser)) {
       refetchAllUsersQuery();
     }
-  }, [data, loading, error]);
+  });
 
   const handleRadioChange = (e) => { 
     setRole(e.target.value);
@@ -73,7 +73,6 @@ function UserDetail({userEmail, user, refetchAllUsersQuery}) {
 
 export default function WrappedUserDetail({ usersById, refetchAllUsersQuery}) {
   const { userEmail } = useParams();
-  const [loading, setLoading] = useState(true);
 
   if (usersById === null) {
     return <p>Loading...</p>;

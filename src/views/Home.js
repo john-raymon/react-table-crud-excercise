@@ -31,7 +31,7 @@ export default function Home({ users = [], refetchAllUsersQuery}) {
       refetchAllUsersQuery();
       setCheckboxMap(new Map());
     }
-  }, [loading, data, error])
+  }, [loading, data, error, refetchAllUsersQuery])
 
   const updateCheckboxMap = (email, checked) => {
     function updateAndReturnNewMap(prevMap) {
