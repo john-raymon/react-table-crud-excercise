@@ -29,7 +29,7 @@ function UserDetail({userEmail, user, refetchAllUsersQuery}) {
     if (!loading && !error && (data && data.updateUser)) {
       refetchAllUsersQuery();
     }
-  });
+  }, [loading, data, error, refetchAllUsersQuery]);
 
   const handleRadioChange = (e) => { 
     setRole(e.target.value);
